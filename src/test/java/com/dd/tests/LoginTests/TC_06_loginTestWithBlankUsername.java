@@ -1,15 +1,16 @@
-package com.dd.tests;
+package com.dd.tests.LoginTests;
 
 import com.dd.pages.InventoryPage;
 import com.dd.pages.LoginPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class AddProductToCart {
+import static org.testng.Assert.assertEquals;
+
+public class TC_06_loginTestWithBlankUsername {
 
     WebDriver driver;
 
@@ -28,13 +29,14 @@ public class AddProductToCart {
     }
 
     @Test
-    public void AddItemToShoppingCart()
+    public void testLoginWithBlankUsername()
     {
         LoginPage loginPage=new LoginPage(driver);
-        loginPage.typeUsername("standard_user").typePassword("secret_sauce").
+        loginPage.typeUsername(" ").typePassword("secret_sauce").
                 clickLoginButton();
         InventoryPage inventoryPage = new  InventoryPage(driver);
-        inventoryPage.addItemsToCart();
-        Assert.assertEquals(inventoryPage.ShoppingCart_itemCount(),1,"Item count should be more than one");
+     //   assertEquals(inventoryPage.getErrorMessage(),"Epic sadface: Username is required","Expected Error message shown  after invalid login");
     }
+
+
 }

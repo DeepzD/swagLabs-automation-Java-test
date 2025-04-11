@@ -1,4 +1,4 @@
-package com.dd.tests;
+package com.dd.tests.LoginTests;
 
 import com.dd.pages.InventoryPage;
 import com.dd.pages.LoginPage;
@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 
-public class ValidLoginTest {
+public class TC_04_loginTestWithInvalidPassword {
 
     WebDriver driver;
 
@@ -29,13 +29,13 @@ public class ValidLoginTest {
     }
 
     @Test
-    public void testLoginWithValidCredentials()
+    public void testLoginWithinValidPassword()
     {
         LoginPage loginPage=new LoginPage(driver);
-        loginPage.typeUsername("standard_user").typePassword("secret_sauce").
+        loginPage.typeUsername("standard_user").typePassword("secret_sauce1").
                 clickLoginButton();
         InventoryPage inventoryPage = new  InventoryPage(driver);
-        assertEquals(inventoryPage.getPageTitle(),"Products","After successful login page title is Products");
+        assertEquals(inventoryPage.getErrorMessage(),"Epic sadface: Username and password do not match any user in this service","Expected Error message shown  after invalid login");
     }
 
 

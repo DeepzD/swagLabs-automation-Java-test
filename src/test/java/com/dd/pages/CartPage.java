@@ -7,11 +7,17 @@ public class CartPage {
 
     private final WebDriver driver;
 
+    By title = By.cssSelector(".title");
     By checkOutButton = By.id("checkout");
 
     public CartPage(WebDriver driver)
     {
         this.driver= driver;
+    }
+
+    public String getPageTitle()
+    {
+        return driver.findElement(title).getText();
     }
 
     public void clickCheckOutButton()
